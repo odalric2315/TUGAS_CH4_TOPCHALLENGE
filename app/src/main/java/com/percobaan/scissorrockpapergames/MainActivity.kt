@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ImageButton
 import android.widget.Toast
+import com.percobaan.scissorrockpapergames.R.string.*
 import com.percobaan.scissorrockpapergames.databinding.ActivityMainBinding
 
 private val ImageButton.view: Any
@@ -32,7 +33,8 @@ class MainActivity : AppCompatActivity() {
             if (!state1) {
                 state1 = true
                 selected1 = it
-                option1 = binding.stone1.view.toString()
+                option1 = getString(R.string.batu)
+//                option1 = binding.stone1.view.toString()
                 binding.stone1.background = getDrawable(R.drawable.bg_pilihan)
             } else {
                 Toast.makeText(this, "Can't Select", Toast.LENGTH_SHORT).show()
@@ -42,7 +44,8 @@ class MainActivity : AppCompatActivity() {
             if (!state1) {
                 state1 = true
                 selected1 = it
-                option1 = binding.paper1.view.toString()
+                option1 = getString(R.string.kertas)
+//                option1 = binding.paper1.view.toString()
                 binding.paper1.background = getDrawable(R.drawable.bg_pilihan)
             } else {
                 Toast.makeText(this, "Can't Select", Toast.LENGTH_SHORT).show()
@@ -52,7 +55,8 @@ class MainActivity : AppCompatActivity() {
             if (!state1) {
                 state1 = true
                 selected1 = it
-                option1 = binding.scissor1.view.toString()
+                option1 = getString(R.string.gunting)
+//                option1 = binding.scissor1.view.toString()
                 binding.scissor1.background = getDrawable(R.drawable.bg_pilihan)
             } else {
                 Toast.makeText(this, "Can't Select", Toast.LENGTH_SHORT).show()
@@ -62,7 +66,8 @@ class MainActivity : AppCompatActivity() {
             if (!state2) {
                 state2 = true
                 selected2 = it
-                option2 = binding.stone2.view.toString()
+                option2 = getString(R.string.batu)
+//                option2 = binding.stone2.view.toString()
                 binding.stone2.background = getDrawable(R.drawable.bg_pilihan)
                 checkOption(option1, option2)
             } else {
@@ -73,8 +78,10 @@ class MainActivity : AppCompatActivity() {
             if (!state2) {
                 state2 = true
                 selected2 = it
-                option2 = binding.paper2.view.toString()
+                option2 = getString(R.string.kertas)
+//                option2 = binding.paper2.view.toString()
                 binding.paper2.background = getDrawable(R.drawable.bg_pilihan)
+                checkOption(option1, option2)
             } else {
                 Toast.makeText(this, "Can't Select", Toast.LENGTH_SHORT).show()
             }
@@ -83,8 +90,10 @@ class MainActivity : AppCompatActivity() {
             if (!state2) {
                 state2 = true
                 selected2 = it
-                option2 = binding.scissor2.view.toString()
+                option2 = getString(R.string.gunting)
+//                option2 = binding.scissor2.view.toString()
                 binding.scissor2.background = getDrawable(R.drawable.bg_pilihan)
+                checkOption(option1, option2)
             } else {
                 Toast.makeText(this, "Can't Select", Toast.LENGTH_SHORT).show()
             }
@@ -95,6 +104,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     private fun resetState() {
         option1 = ""
         option2 = ""
@@ -110,18 +120,38 @@ class MainActivity : AppCompatActivity() {
         binding.result.visibility = View.VISIBLE
         if (option1 == option2) {
             binding.result.text = getString(R.string.equals)
-        } else if (option1 == "stone" && option2 == "scissor") {
-            binding.result.text = getString(R.string.player1win)
-        } else if (option1 == "scissor" && option2 == "stone") {
-            binding.result.text = getString(R.string.comwin)
-        } else if (option1 == "paper" && option2 == "stone") {
-            binding.result.text = getString(R.string.player1win)
-        } else if (option1 == "stone" && option2 == "paper") {
-            binding.result.text = getString(R.string.comwin)
-        } else if (option1 == "scissor" && option2 == "paper") {
-            binding.result.text = getString(R.string.player1win)
-        } else if (option1 == "paper" && option2 == "scissor") {
-            binding.result.text = getString(R.string.comwin)
+        } else {
+            if ((option1 == getString(batu) && option2 == getString(gunting))
+                || (option1 == getString(gunting) && option2 == getString(kertas))
+                || (option1 == getString(kertas) && option2 == getString(batu))
+            ) {
+                binding.result.text = getString(R.string.player1win)
+            } else {
+                binding.result.text = getString(R.string.comwin)
+            }
         }
     }
 }
+
+
+
+
+
+
+
+//            if (option1 == "batu" && option2 == "gunting") {
+//                binding.result.text = getString(R.string.player1win)
+//            } else if (option1 == getString(R.string.gunting) && option2 == getString(R.string.batu)) {
+//                    binding.result.text = getString(R.string.comwin)
+//                } else if (option1 == getString(R.string.kertas) && option2 == getString(R.string.batu)) {
+//                    binding.result.text = getString(R.string.player1win)
+//                } else if (option1 == getString(R.string.batu) && option2 == getString(R.string.kertas)) {
+//                    binding.result.text = getString(R.string.comwin)
+//                } else if (option1 == getString(R.string.gunting) && option2 == getString(R.string.kertas)) {
+//                    binding.result.text = getString(R.string.player1win)
+//                } else if (option1 == getString(R.string.kertas) && option2 == getString(R.string.gunting)) {
+//                    binding.result.text = getString(R.string.comwin)
+//                }
+
+
+
